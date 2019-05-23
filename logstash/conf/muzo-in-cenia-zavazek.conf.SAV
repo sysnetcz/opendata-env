@@ -11,10 +11,24 @@ input {
 }
 
 filter {
+    ruby {
+	code => "
+	    datearr1 = ['datumprijeti','datumsplatnosti','datumvystaveni']
+	    datearr2 = ['datumprijetiStr','datumsplatnostiStr','datumvystaveniStr']	    
+	    for i in 0..2
+		event.set(datearr2.at(i), '')
+		splitDate = ''
+		if event.get(datearr1.at(i)) != nil
+		    tstamp = event.get(datearr1.at(i)).to_i
+		    event.set(datearr2.at(i), Time.at(tstamp).strftime('%d.%m.%Y'))
+		end
+	    end
+	"
+    } 
     mutate {
 	strip => ["cislofaktury", "cislosmlouvy", "cisloobjednavky", "dodavatel", "ico", "ucelplatby", "suc", "rparagraf", "rpolozka", "auc", "nazevpolozkyrozpoctu", "radaevidcislo"]
 	add_field => {
-	    "id" => "%{rok}-%{radaevidcislo}-%{idpolozky}"
+	    "id" => "%{radaevidcislo}"
 	    "invoice" => "%{cislofaktury}"
  	    "total" => "%{celkovacastka}"
 	    "contractid" => "%{cislosmlouvy}"
@@ -24,10 +38,16 @@ filter {
 	    "originator" => "CENIA"
 	    "form" => "faktura"
 	    "keyword" => "CENIA faktura OpenData MUZO JASU EKIS"
+	    #"datumprijetiStr" => %{datumprijetiStr}
+	    #"datumsplatnostiStr" => %{datumsplatnostiStr}
+	    #"datumvystaveniStr" => %{datumvystaveniStr}
 	}
+	    
 	convert => {
 	    "total" => "float"
-	    "idpolozky" => "integer"
+	    "datumprijetiStr" => "string"
+	    "datumsplatnostiStr" => "string"
+	    "datumvystaveniStr" => "string"
 	}
 	gsub => [ 
 	    "contractor", "\\n\\t", " ",
@@ -41,7 +61,7 @@ output {
     elasticsearch {
 	hosts => "localhost"
 	index => "muzo-cenia-zavazek"
-	document_id => "%{rok}-%{radaevidcislo}-%{idpolozky}"
+	document_id => "%{radaevidcislo}"
     }
     stdout {
 #	codec => rubydebug
