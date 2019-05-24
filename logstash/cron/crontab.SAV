@@ -1,0 +1,43 @@
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+
+# For details see man 4 crontabs
+
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  * user-name  command to be executed
+
+
+
+# OpenData import
+05 05 * * 3 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-aopk-objendavka.conf -l /var/log/logstash/opendata/aopk/objednavka
+15 05 * * 3 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-aopk-smlouva.conf -l /var/log/logstash/opendata/aopk/smlouva
+25 05 * * 3 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-aopk-zavazek.conf -l /var/log/logstash/opendata/aopk/zavazek
+35 05 * * 3 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-mzp-objednavka.conf -l /var/log/logstash/opendata/mzp/objednavka
+45 05 * * 3 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-mzp-zavazek.conf -l /var/log/logstash/opendata/mzp/zavazek
+55 05 * * 3 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-sjcr-zavazek.conf -l /var/log/logstash/opendata/sjcr/zavazek
+05 06 * * 3 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-sjcr-smlouva.conf -l /var/log/logstash/opendata/sjcr/smlouva
+15 06 * * 3 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cgs-zavazek.conf -l /var/log/logstash/opendata/cgs/zavazek
+25 06 * * 3 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cgs-objednavka.conf -l /var/log/logstash/opendata/cgs/objednavka
+35 06 * * 3 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cgs-smlouva.conf -l /var/log/logstash/opendata/cgs/smlouva
+45 06 * * 3 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cenia-zavazek.conf -l /var/log/logstash/opendata/cenia/zavazek
+
+
+# OpenData export
+05 08 * * 3 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-aopk-faktury.conf -l /var/log/logstash/opendata/aopk/faktury
+15 08 * * 3 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-aopk-objednavky.conf -l /var/log/logstash/opendata/aopk/objednavky
+15 08 * * 3 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-aopk-smlouvy.conf -l /var/log/logstash/opendata/aopk/smlouvy
+35 08 * * 3 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-mzp-faktury.conf -l /var/log/logstash/opendata/mzp/faktury
+45 08 * * 3 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-mzp-objednavky.conf -l /var/log/logstash/opendata/mzp/objednavky
+55 08 * * 3 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-sjcr-faktury.conf -l /var/log/logstash/opendata/sjcr/faktury
+05 09 * * 3 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-sjcr-smlouvy.conf -l /var/log/logstash/opendata/sjcr/smlouvy
+15 09 * * 3 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cgs-faktury.conf -l /var/log/logstash/opendata/cgs/faktury
+25 09 * * 3 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cgs-objednavky.conf -l /var/log/logstash/opendata/cgs/objednavky
+35 09 * * 3 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cgs-smlouvy.conf -l /var/log/logstash/opendata/cgs/smlouvy
+45 09 * * 3 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cenia-faktury.conf -l /var/log/logstash/opendata/cenia/faktury
