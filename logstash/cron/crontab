@@ -1,32 +1,6 @@
 SHELL=/bin/bash
-PATH=/sbin:/bin:/usr/sbin:/usr/bin
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/opt/logstash/bin/logstash
 MAILTO=root
-
-#-----------------------------------------------
-RUNUSER=root
-RUNDAY_ALL=0
-LOGSTASH=/opt/logstash/bin/logstash
-CONFPATH=/etc/logstash/opendata
-LOGPATH=/var/log/logstash/opendata
-
-OD_ORG_AOPK=aopk
-OD_ORG_CENIA=cenia
-OD_ORG_CGS=cgs
-OD_ORG_CIZP=cizp
-OD_ORG_MZP=mzp
-OD_ORG_SJCR=sjcr
-
-INPUT_MUZO=muzo-in
-OUTPUT_CSV=csv-out
-
-OD_FORM_OBJEDNAVKA=objednavka
-OD_FORM_SMLOUVA=smlouva
-OD_FORM_ZAVAZEK=zavazek
-OD_FORM_POHLEDAVKA=pohledavka
-
-OD_SET_FAKTURY=faktury
-OD_SET_OBJEDNAVKY=objednavky
-OD_SET_SMLOUVY=smlouvy
 
 # For details see man 4 crontabs
 
@@ -40,34 +14,34 @@ OD_SET_SMLOUVY=smlouvy
 # *  *  *  *  * user-name  command to be executed
 
 # OpenData import
-05 05 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$INPUT_MUZO-$OD_ORG_AOPK-$OD_FORM_OBJEDNAVKA.conf -l $LOGPATH/$OD_ORG_AOPK/$OD_FORM_OBJEDNAVKA
-15 05 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$INPUT_MUZO-$OD_ORG_AOPK-$OD_FORM_SMLOUVA.conf -l $LOGPATH/$OD_ORG_AOPK/$OD_FORM_SMLOUVA
-25 05 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$INPUT_MUZO-$OD_ORG_AOPK-$OD_FORM_ZAVAZEK.conf -l $LOGPATH/$OD_ORG_AOPK/$OD_FORM_ZAVAZEK
-35 05 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$INPUT_MUZO-$OD_ORG_MZP-$OD_FORM_OBJEDNAVKA.conf -l $LOGPATH/$OD_ORG_MZP/$OD_FORM_OBJEDNAVKA
-45 05 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$INPUT_MUZO-$OD_ORG_MZP-$OD_FORM_ZAVAZEK.conf -l $LOGPATH/$OD_ORG_MZP/$OD_FORM_ZAVAZEK
-55 05 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$INPUT_MUZO-$OD_ORG_SJCR-$OD_FORM_ZAVAZEK.conf -l $LOGPATH/$OD_ORG_SJCR/$OD_FORM_ZAVAZEK
-05 06 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$INPUT_MUZO-$OD_ORG_SJCR-$OD_FORM_SMLOUVA.conf -l $LOGPATH/$OD_ORG_SJCR/$OD_FORM_SMLOUVA
-15 06 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$INPUT_MUZO-$OD_ORG_CGS-$OD_FORM_ZAVAZEK.conf -l $LOGPATH/$OD_ORG_CGS/$OD_FORM_ZAVAZEK
-25 06 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$INPUT_MUZO-$OD_ORG_CGS-$OD_FORM_OBJEDNAVKA.conf -l $LOGPATH/$OD_ORG_CGS/$OD_FORM_OBJEDNAVKA
-35 06 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$INPUT_MUZO-$OD_ORG_CGS-$OD_FORM_SMLOUVA.conf -l $LOGPATH/$OD_ORG_CGS/$OD_FORM_SMLOUVA
-45 06 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$INPUT_MUZO-$OD_ORG_CENIA-$OD_FORM_ZAVAZEK.conf -l $LOGPATH/$OD_ORG_CENIA/$OD_FORM_ZAVAZEK
-55 06 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$INPUT_MUZO-$OD_ORG_CIZP-$OD_FORM_OBJEDNAVKA.conf -l $LOGPATH/$OD_ORG_CIZP/$OD_FORM_OBJEDNAVKA
-05 07 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$INPUT_MUZO-$OD_ORG_CIZP-$OD_FORM_SMLOUVA.conf -l $LOGPATH/$OD_ORG_CIZP/$OD_FORM_SMLOUVA
-15 07 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$INPUT_MUZO-$OD_ORG_CIZP-$OD_FORM_ZAVAZEK.conf -l $LOGPATH/$OD_ORG_CIZP/$OD_FORM_ZAVAZEK
+05 05 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-aopk-objednavka.conf -l /var/log/logstash/opendata/aopk/objednavka
+15 05 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-aopk-smlouva.conf -l /var/log/logstash/opendata/aopk/smlouva
+25 05 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-aopk-zavazek.conf -l /var/log/logstash/opendata/aopk/zavazek
+35 05 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-mzp-objednavka.conf -l /var/log/logstash/opendata/mzp/objednavka
+45 05 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-mzp-zavazek.conf -l /var/log/logstash/opendata/mzp/zavazek
+55 05 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-sjcr-zavazek.conf -l /var/log/logstash/opendata/sjcr/zavazek
+05 06 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-sjcr-smlouva.conf -l /var/log/logstash/opendata/sjcr/smlouva
+15 06 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cgs-zavazek.conf -l /var/log/logstash/opendata/cgs/zavazek
+25 06 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cgs-objednavka.conf -l /var/log/logstash/opendata/cgs/objednavka
+35 06 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cgs-smlouva.conf -l /var/log/logstash/opendata/cgs/smlouva
+45 06 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cenia-zavazek.conf -l /var/log/logstash/opendata/cenia/zavazek
+55 06 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cizp-objednavka.conf -l /var/log/logstash/opendata/cizp/objednavka
+05 07 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cizp-smlouva.conf -l /var/log/logstash/opendata/cizp/smlouva
+15 07 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cizp-zavazek.conf -l /var/log/logstash/opendata/cizp/zavazek
 
 
 # OpenData export
-05 08 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$OUTPUT_CSV-$OD_ORG_AOPK-$OD_SET_FAKTURY.conf -l $LOGPATH/$OD_ORG_AOPK/$OD_SET_FAKTURY
-15 08 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$OUTPUT_CSV-$OD_ORG_AOPK-$OD_SET_OBJEDNAVKY.conf -l $LOGPATH/$OD_ORG_AOPK/$OD_SET_OBJEDNAVKY
-15 08 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$OUTPUT_CSV-$OD_ORG_AOPK-$OD_SET_SMLOUVY.conf -l $LOGPATH/$OD_ORG_AOPK/$OD_SET_SMLOUVY
-35 08 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$OUTPUT_CSV-$OD_ORG_MZP-$OD_SET_FAKTURY.conf -l $LOGPATH/$OD_ORG_MZP/$OD_SET_FAKTURY
-45 08 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$OUTPUT_CSV-$OD_ORG_MZP-$OD_SET_OBJEDNAVKY.conf -l $LOGPATH/$OD_ORG_MZP/$OD_SET_OBJEDNAVKY
-55 08 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$OUTPUT_CSV-$OD_ORG_SJCR-$OD_SET_FAKTURY.conf -l $LOGPATH/$OD_ORG_SJCR/$OD_SET_FAKTURY
-05 09 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$OUTPUT_CSV-$OD_ORG_SJCR-$OD_SET_SMLOUVY.conf -l $LOGPATH/$OD_ORG_SJCR/$OD_SET_SMLOUVY
-15 09 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$OUTPUT_CSV-$OD_ORG_CGS-$OD_SET_FAKTURY.conf -l $LOGPATH/$OD_ORG_CGS/$OD_SET_FAKTURY
-25 09 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$OUTPUT_CSV-$OD_ORG_CGS-$OD_SET_OBJEDNAVKY.conf -l $LOGPATH/$OD_ORG_CGS/$OD_SET_OBJEDNAVKY
-35 09 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$OUTPUT_CSV-$OD_ORG_CGS-$OD_SET_SMLOUVY.conf -l $LOGPATH/$OD_ORG_CGS/$OD_SET_SMLOUVY
-45 09 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$OUTPUT_CSV-$OD_ORG_CENIA-$OD_SET_FAKTURY.conf -l $LOGPATH/$OD_ORG_CENIA/$OD_SET_FAKTURY
-55 09 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$OUTPUT_CSV-$OD_ORG_CIZP-$OD_SET_FAKTURY.conf -l $LOGPATH/$OD_ORG_CIZP/$OD_SET_FAKTURY
-05 10 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$OUTPUT_CSV-$OD_ORG_CIZP-$OD_SET_OBJEDNAVKY.conf -l $LOGPATH/$OD_ORG_CIZP/$OD_SET_OBJEDNAVKY
-15 10 * * $RUNDAY_ALL $RUNUSER $LOGSTASH -f $CONFPATH/$OUTPUT_CSV-$OD_ORG_CIZP-$OD_SET_SMLOUVY.conf -l $LOGPATH/$OD_ORG_CIZP/$OD_SET_SMLOUVY
+05 08 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-aopk-faktury.conf -l /var/log/logstash/opendata/aopk/faktury
+15 08 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-aopk-objednavky.conf -l /var/log/logstash/opendata/aopk/objednavky
+15 08 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-aopk-smlouvy.conf -l /var/log/logstash/opendata/aopk/smlouvy
+35 08 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-mzp-faktury.conf -l /var/log/logstash/opendata/mzp/faktury
+45 08 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-mzp-objednavky.conf -l /var/log/logstash/opendata/mzp/objednavky
+55 08 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-sjcr-faktury.conf -l /var/log/logstash/opendata/sjcr/faktury
+05 09 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-sjcr-smlouvy.conf -l /var/log/logstash/opendata/sjcr/smlouvy
+15 09 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cgs-faktury.conf -l /var/log/logstash/opendata/cgs/faktury
+25 09 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cgs-objednavky.conf -l /var/log/logstash/opendata/cgs/objednavky
+35 09 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cgs-smlouvy.conf -l /var/log/logstash/opendata/cgs/smlouvy
+45 09 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cenia-faktury.conf -l /var/log/logstash/opendata/cenia/faktury
+55 09 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cizp-faktury.conf -l /var/log/logstash/opendata/cizp/faktury
+05 10 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cizp-objednavky.conf -l /var/log/logstash/opendata/cizp/objednavky
+15 10 * * 0 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cizp-smlouvy.conf -l /var/log/logstash/opendata/cizp/smlouvy
