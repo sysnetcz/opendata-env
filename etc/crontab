@@ -48,16 +48,23 @@ MAILTO=root
 # OpenData export 2019
  5 11 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-aopk-faktury_2019.conf -l /var/log/logstash/opendata/aopk/faktury
 15 11 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-aopk-objednavky_2019.conf -l /var/log/logstash/opendata/aopk/objednavky
-25 11 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-aopk-smlouvy_2019.conf -l /var/log/logstash/opendata/aopk/smlouvy
-35 11 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-mzp-faktury_2019.conf -l /var/log/logstash/opendata/mzp/faktury
-45 11 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-mzp-objednavky_2019.conf -l /var/log/logstash/opendata/mzp/objednavky
-55 11 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-sjcr-faktury_2019.conf -l /var/log/logstash/opendata/sjcr/faktury
- 5 12 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-sjcr-smlouvy_2019.conf -l /var/log/logstash/opendata/sjcr/smlouvy
-15 12 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cgs-faktury_2019.conf -l /var/log/logstash/opendata/cgs/faktury
-25 12 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cgs-objednavky_2019.conf -l /var/log/logstash/opendata/cgs/objednavky
-35 12 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cgs-smlouvy_2019.conf -l /var/log/logstash/opendata/cgs/smlouvy
-45 12 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cenia-faktury_2019.conf -l /var/log/logstash/opendata/cenia/faktury
-55 12 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cizp-faktury_2019.conf -l /var/log/logstash/opendata/cizp/faktury
- 5 13 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cizp-objednavky_2019.conf -l /var/log/logstash/opendata/cizp/objednavky
-15 13 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cizp-smlouvy_2019.conf -l /var/log/logstash/opendata/cizp/smlouvy
+25 11 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-mzp-faktury_2019.conf -l /var/log/logstash/opendata/mzp/faktury
+35 11 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-mzp-objednavky_2019.conf -l /var/log/logstash/opendata/mzp/objednavky
+45 11 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-sjcr-faktury_2019.conf -l /var/log/logstash/opendata/sjcr/faktury
+55 11 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cgs-faktury_2019.conf -l /var/log/logstash/opendata/cgs/faktury
+05 12 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cgs-objednavky_2019.conf -l /var/log/logstash/opendata/cgs/objednavky
+15 12 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cenia-faktury_2019.conf -l /var/log/logstash/opendata/cenia/faktury
+25 12 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cizp-faktury_2019.conf -l /var/log/logstash/opendata/cizp/faktury
+35 12 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cizp-objednavky_2019.conf -l /var/log/logstash/opendata/cizp/objednavky
 
+# OpenData export 2020
+ 5 13 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-aopk-faktury_2020.conf -l /var/log/logstash/opendata/aopk/faktury
+15 13 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-aopk-objednavky_2020.conf -l /var/log/logstash/opendata/aopk/objednavky
+25 13 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-mzp-faktury_2020.conf -l /var/log/logstash/opendata/mzp/faktury
+35 13 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-mzp-objednavky_2020.conf -l /var/log/logstash/opendata/mzp/objednavky
+45 13 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-sjcr-faktury_2020.conf -l /var/log/logstash/opendata/sjcr/faktury
+55 13 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cgs-faktury_2020.conf -l /var/log/logstash/opendata/cgs/faktury
+05 14 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cgs-objednavky_2020.conf -l /var/log/logstash/opendata/cgs/objednavky
+15 14 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cenia-faktury_2020.conf -l /var/log/logstash/opendata/cenia/faktury
+25 14 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cizp-faktury_2020.conf -l /var/log/logstash/opendata/cizp/faktury
+35 14 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cizp-objednavky_2020.conf -l /var/log/logstash/opendata/cizp/objednavky
