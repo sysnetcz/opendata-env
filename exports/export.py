@@ -223,13 +223,13 @@ class Exporter:
             return out
         try:
             if self.done:
-                print('Exporter.__load_data_from_eap', 'DONE')
+                print('Exporter.load_data_from_eap', 'DONE')
             else:
-                print('Exporter.__load_data_from_eap', 'SCAN EAP START ...')
+                # print('Exporter.load_data_from_eap', 'SCAN EAP START ...')
                 self.hits = self.search.scan()
                 self.done = True
                 out = True
-                print('Exporter.__load_data_from_eap', '... SCAN EAP FINISHED')
+                # print('Exporter.__load_data_from_eap', '... SCAN EAP FINISHED')
 
         except (TransportError, ElasticsearchException) as err:
             print('Exporter.load_data_from_eap', 'ERROR', type(err), err)
