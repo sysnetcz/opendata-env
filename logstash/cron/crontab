@@ -25,39 +25,40 @@ MAILTO=root
 25 6 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cgs-objednavka.conf -l /var/log/logstash/opendata/cgs/objednavka
 35 6 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cgs-smlouva.conf -l /var/log/logstash/opendata/cgs/smlouva
 45 6 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cenia-zavazek.conf -l /var/log/logstash/opendata/cenia/zavazek
-55 6 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cizp-objednavka.conf -l /var/log/logstash/opendata/cizp/objednavka
- 5 7 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cizp-smlouva.conf -l /var/log/logstash/opendata/cizp/smlouva
-15 7 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cizp-zavazek.conf -l /var/log/logstash/opendata/cizp/zavazek
+55 6 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cenia-smlouva.conf -l /var/log/logstash/opendata/cenia/smlouva
+ 5 7 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cizp-objednavka.conf -l /var/log/logstash/opendata/cizp/objednavka
+15 7 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cizp-smlouva.conf -l /var/log/logstash/opendata/cizp/smlouva
+25 7 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cizp-zavazek.conf -l /var/log/logstash/opendata/cizp/zavazek
 
 # OpenData export
- 5  8 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-aopk-faktury.conf -l /var/log/logstash/opendata/aopk/faktury
-15  8 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-aopk-objednavky.conf -l /var/log/logstash/opendata/aopk/objednavky
-15  8 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-aopk-smlouvy.conf -l /var/log/logstash/opendata/aopk/smlouvy
-35  8 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-mzp-faktury.conf -l /var/log/logstash/opendata/mzp/faktury
-45  8 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-mzp-objednavky.conf -l /var/log/logstash/opendata/mzp/objednavky
-55  8 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-sjcr-faktury.conf -l /var/log/logstash/opendata/sjcr/faktury
- 5  9 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-sjcr-smlouvy.conf -l /var/log/logstash/opendata/sjcr/smlouvy
-15  9 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cgs-faktury.conf -l /var/log/logstash/opendata/cgs/faktury
-25  9 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cgs-objednavky.conf -l /var/log/logstash/opendata/cgs/objednavky
-35  9 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cgs-smlouvy.conf -l /var/log/logstash/opendata/cgs/smlouvy
-45  9 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cenia-faktury.conf -l /var/log/logstash/opendata/cenia/faktury
-55  9 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cizp-faktury.conf -l /var/log/logstash/opendata/cizp/faktury
- 5 10 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cizp-objednavky.conf -l /var/log/logstash/opendata/cizp/objednavky
-15 10 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cizp-smlouvy.conf -l /var/log/logstash/opendata/cizp/smlouvy
+ 5  8 * * 7 root python3 /opt/opendata/expoerts/export.py --company=aopk --doc-type=faktura --path=/var/ftp/pub
+10  8 * * 7 root python3 /opt/opendata/expoerts/export.py --company=aopk --doc-type=objednavka --path=/var/ftp/pub
+15  8 * * 7 root python3 /opt/opendata/expoerts/export.py --company=aopk --doc-type=smlouva --path=/var/ftp/pub
+20  8 * * 7 root python3 /opt/opendata/expoerts/export.py --company=mzp --doc-type=faktura --path=/var/ftp/pub
+25  8 * * 7 root python3 /opt/opendata/expoerts/export.py --company=mzp --doc-type=objednavka --path=/var/ftp/pub
+30  8 * * 7 root python3 /opt/opendata/expoerts/export.py --company=sjcr --doc-type=faktura --path=/var/ftp/pub
+35  8 * * 7 root python3 /opt/opendata/expoerts/export.py --company=sjcr --doc-type=smlouva --path=/var/ftp/pub
+40  8 * * 7 root python3 /opt/opendata/expoerts/export.py --company=cgs --doc-type=faktura --path=/var/ftp/pub
+45  8 * * 7 root python3 /opt/opendata/expoerts/export.py --company=cgs --doc-type=objednavka --path=/var/ftp/pub
+50  8 * * 7 root python3 /opt/opendata/expoerts/export.py --company=cgs --doc-type=smlouva --path=/var/ftp/pub
+55  8 * * 7 root python3 /opt/opendata/expoerts/export.py --company=cenia --doc-type=faktura --path=/var/ftp/pub
+ 0  9 * * 7 root python3 /opt/opendata/expoerts/export.py --company=cenia --doc-type=smlouva --path=/var/ftp/pub
+ 5  9 * * 7 root python3 /opt/opendata/expoerts/export.py --company=cizp --doc-type=faktura --path=/var/ftp/pub
+10  9 * * 7 root python3 /opt/opendata/expoerts/export.py --company=cizp --doc-type=objednavka --path=/var/ftp/pub
+15  9 * * 7 root python3 /opt/opendata/expoerts/export.py --company=cizp --doc-type=smlouva --path=/var/ftp/pub
 
 # OpenData export 2019
- 5 11 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-aopk-faktury_2019.conf -l /var/log/logstash/opendata/aopk/faktury
-15 11 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-aopk-objednavky_2019.conf -l /var/log/logstash/opendata/aopk/objednavky
-15 11 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-aopk-smlouvy_2019.conf -l /var/log/logstash/opendata/aopk/smlouvy
-35 11 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-mzp-faktury_2019.conf -l /var/log/logstash/opendata/mzp/faktury
-45 11 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-mzp-objednavky_2019.conf -l /var/log/logstash/opendata/mzp/objednavky
-55 11 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-sjcr-faktury_2019.conf -l /var/log/logstash/opendata/sjcr/faktury
- 5 12 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-sjcr-smlouvy_2019.conf -l /var/log/logstash/opendata/sjcr/smlouvy
-15 12 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cgs-faktury_2019.conf -l /var/log/logstash/opendata/cgs/faktury
-25 12 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cgs-objednavky_2019.conf -l /var/log/logstash/opendata/cgs/objednavky
-35 12 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cgs-smlouvy_2019.conf -l /var/log/logstash/opendata/cgs/smlouvy
-45 12 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cenia-faktury_2019.conf -l /var/log/logstash/opendata/cenia/faktury
-55 12 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cizp-faktury_2019.conf -l /var/log/logstash/opendata/cizp/faktury
- 5 13 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cizp-objednavky_2019.conf -l /var/log/logstash/opendata/cizp/objednavky
-15 13 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/csv-out-cizp-smlouvy_2019.conf -l /var/log/logstash/opendata/cizp/smlouvy
+ 5 10 * * 7 root python3 /opt/opendata/expoerts/export.py --company=aopk --doc-type=faktura --year=2019 --path=/var/ftp/pub
+10 10 * * 7 root python3 /opt/opendata/expoerts/export.py --company=mzp --doc-type=faktura --year=2019 --path=/var/ftp/pub
+15 10 * * 7 root python3 /opt/opendata/expoerts/export.py --company=sjcr --doc-type=faktura --year=2019 --path=/var/ftp/pub
+20 10 * * 7 root python3 /opt/opendata/expoerts/export.py --company=cgs --doc-type=faktura --year=2019 --path=/var/ftp/pub
+25 10 * * 7 root python3 /opt/opendata/expoerts/export.py --company=cenia --doc-type=faktura --year=2019 --path=/var/ftp/pub
+30 10 * * 7 root python3 /opt/opendata/expoerts/export.py --company=cizp --doc-type=faktura --year=2019 --path=/var/ftp/pub
 
+# OpenData export 2020
+ 5 11 * * 7 root python3 /opt/opendata/expoerts/export.py --company=aopk --doc-type=faktura --year=2020 --path=/var/ftp/pub
+10 11 * * 7 root python3 /opt/opendata/expoerts/export.py --company=mzp --doc-type=faktura --year=2020 --path=/var/ftp/pub
+15 11 * * 7 root python3 /opt/opendata/expoerts/export.py --company=sjcr --doc-type=faktura --year=2020 --path=/var/ftp/pub
+20 11 * * 7 root python3 /opt/opendata/expoerts/export.py --company=cgs --doc-type=faktura --year=2020 --path=/var/ftp/pub
+25 11 * * 7 root python3 /opt/opendata/expoerts/export.py --company=cenia --doc-type=faktura --year=2020 --path=/var/ftp/pub
+30 11 * * 7 root python3 /opt/opendata/expoerts/export.py --company=cizp --doc-type=faktura --year=2020 --path=/var/ftp/pub
