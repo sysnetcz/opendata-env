@@ -12,6 +12,7 @@
 import codecs
 import csv
 import getopt
+import numbers
 import os
 import sys
 
@@ -21,7 +22,7 @@ from elasticsearch_dsl import Search
 
 from settings import DATA_SOURCE_DICTIONARY, CSV_FILE_SUFFIX, DATASOURCE_INDEX, BUFFER_SIZE, DATASOURCE_FIELDNAMES, \
     DATASOURCE_SORTITEM, DATASOURCE_DOCTYPE_FAKTURA, DATASOURCE_DOCTYPE_OBJEDNAVKA, DATASOURCE_DOCTYPE_SMLOUVA, \
-    CSV_OUTPUT_DIRECTORY
+    CSV_OUTPUT_DIRECTORY, ES_HOST, DATASOURCE_FILENAME
 
 
 def consolidate_date(date_str):
@@ -45,6 +46,14 @@ def remove_newlines(input_string):
     out = input_string.replace("\r", " ")
     out = out.replace("\n", " ")
     return out
+
+
+def format_float(input_number):
+    if input_number is None:
+        return ""
+    elif not isinstance(input_number, numbers.Number):
+        return ""
+    return "%.2f" % input_number
 
 
 def add_utf8_bom(filename):
@@ -117,7 +126,8 @@ class Exporter:
         self.company = company.lower()
         self.doctype = doctype.lower()
         self.year = year
-        self.filename = self.company + '-' + self.doctype
+        self.filename = DATA_SOURCE_DICTIONARY[self.company][self.doctype][DATASOURCE_FILENAME]
+        # self.filename = self.company + '-' + self.doctype
         if self.year is not None:
             self.filename += '_' + str(self.year)
         self.filename += CSV_FILE_SUFFIX
@@ -127,7 +137,7 @@ class Exporter:
                     self.filename = os.path.join(CSV_OUTPUT_DIRECTORY, self.filename)
         else:
             self.filename = os.path.join(path, self.filename)
-        self.client = Elasticsearch()
+        self.client = Elasticsearch(ES_HOST)
         self.file = open(self.filename, 'w', encoding='utf-8', newline='')
         self.writer = csv.DictWriter(
             self.file, fieldnames=DATA_SOURCE_DICTIONARY[self.company][self.doctype][DATASOURCE_FIELDNAMES]
@@ -146,11 +156,11 @@ class Exporter:
             print("Exporter", "index", self.index)
             self.sort_item = DATA_SOURCE_DICTIONARY[self.company][self.doctype][DATASOURCE_SORTITEM]
             print("Exporter", "sort_item", self.sort_item)
-            self.search = Search(using=self.client, index=self.index)\
+            self.search = Search(using=self.client, index=self.index) \
                 .sort({self.sort_item: {"order": "asc"}})
             if self.year is not None:
-                self.search = Search(using=self.client, index=self.index)\
-                    .query("match", rok=self.year)\
+                self.search = Search(using=self.client, index=self.index) \
+                    .query("match", rok=self.year) \
                     .sort({self.sort_item: {"order": "asc"}})
         else:
             print('Exporter', 'ERROR', self.index_pattern, 'Index neexistuje')
@@ -248,19 +258,19 @@ class Exporter:
                         {
                             'cislo_smlouvy': hit.cislosmlouvy,
                             'cislo_objednavky': hit.cisloobjednavky,
-                            'dodavatel': hit.dodavatel,
+                            'dodavatel': remove_newlines(hit.dodavatel),
                             'ico': hit.ico,
                             'cislo_faktury': hit.cislofaktury,
                             'datum_vystaveni': consolidate_date(hit.datumvystaveni),
                             'datum_prijeti': consolidate_date(hit.datumprijeti),
                             'datum_splatnosti': consolidate_date(hit.datumsplatnosti),
                             'datum_uhrady': consolidate_date(hit.datumuhrady),
-                            'celkova_castka': hit.celkovacastka,
-                            'castka_polozky': hit.castkapolozky,
+                            'celkova_castka': format_float(hit.celkovacastka),
+                            'castka_polozky': format_float(hit.castkapolozky),
                             'mena': 'CZK',
                             'ucel_platby': remove_newlines(hit.ucelplatby),
                             'polozka_rozpoctu': hit.rpolozka,
-                            'nazev_plozky_rozpoctu': hit.nazevpolozkyrozpoctu,
+                            'nazev_plozky_rozpoctu': remove_newlines(hit.nazevpolozkyrozpoctu),
                             'kapitola': '315',
                             'nazev_kapitoly': 'Ministerstvo životního prostředí'
                         }
@@ -270,11 +280,11 @@ class Exporter:
                         {
                             'cislo_objednavky': hit.radaevidcislo,
                             'popis': remove_newlines(hit.title),
-                            'dodavatel': hit.contractorname,
+                            'dodavatel': remove_newlines(hit.contractorname),
                             'ico': hit.contractorid,
                             'datum_objednani': consolidate_date(hit.dateconclusion),
                             'datum_dodani': consolidate_date(hit.datevalidity),
-                            'celkova_castka': hit.valuewithvat,
+                            'celkova_castka': format_float(hit.valuewithvat),
                             'mena': 'CZK'
                         }
                     )
@@ -283,11 +293,11 @@ class Exporter:
                         {
                             'cislo_smlouvy': hit.contractid,
                             'predmet': remove_newlines(hit.contracttitle),
-                            'dodavatel': hit.contractorcompany,
+                            'dodavatel': remove_newlines(hit.contractorcompany),
                             'ico': hit.contractorid,
                             'datum_uzavreni': consolidate_date(hit.dateconclusion),
                             'datum_trvani': consolidate_date(hit.datevalidity),
-                            'celkova_castka': hit.valuewithvat,
+                            'celkova_castka': format_float(hit.valuewithvat),
                             'mena': 'CZK'
                         }
                     )
