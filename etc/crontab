@@ -54,6 +54,12 @@ MAILTO=root
 20 10 * * 7 root python3 /opt/opendata/exports/export.py --company=cgs --doc-type=faktura --year=2019 --output-path=/var/ftp/pub
 25 10 * * 7 root python3 /opt/opendata/exports/export.py --company=cenia --doc-type=faktura --year=2019 --output-path=/var/ftp/pub
 30 10 * * 7 root python3 /opt/opendata/exports/export.py --company=cizp --doc-type=faktura --year=2019 --output-path=/var/ftp/pub
+35 10 * * 7 root python3 /opt/opendata/exports/export.py --company=aopk --doc-type=smlouva --year=2019 --output-path=/var/ftp/pub
+40 10 * * 7 root python3 /opt/opendata/exports/export.py --company=sjcr --doc-type=smlouva --year=2019 --output-path=/var/ftp/pub
+45 10 * * 7 root python3 /opt/opendata/exports/export.py --company=cgs --doc-type=smlouva --year=2019 --output-path=/var/ftp/pub
+50 10 * * 7 root python3 /opt/opendata/exports/export.py --company=cenia --doc-type=smlouva --year=2019 --output-path=/var/ftp/pub
+55 11 * * 7 root python3 /opt/opendata/exports/export.py --company=cizp --doc-type=smlouva --year=2019 --output-path=/var/ftp/pub
+
 
 # OpenData export 2020
  5 11 * * 7 root python3 /opt/opendata/exports/export.py --company=aopk --doc-type=faktura --year=2020 --output-path=/var/ftp/pub
@@ -62,3 +68,8 @@ MAILTO=root
 20 11 * * 7 root python3 /opt/opendata/exports/export.py --company=cgs --doc-type=faktura --year=2020 --output-path=/var/ftp/pub
 25 11 * * 7 root python3 /opt/opendata/exports/export.py --company=cenia --doc-type=faktura --year=2020 --output-path=/var/ftp/pub
 30 11 * * 7 root python3 /opt/opendata/exports/export.py --company=cizp --doc-type=faktura --year=2020 --output-path=/var/ftp/pub
+35 10 * * 7 root python3 /opt/opendata/exports/export.py --company=aopk --doc-type=smlouva --year=2020 --output-path=/var/ftp/pub
+40 10 * * 7 root python3 /opt/opendata/exports/export.py --company=sjcr --doc-type=smlouva --year=2020 --output-path=/var/ftp/pub
+45 10 * * 7 root python3 /opt/opendata/exports/export.py --company=cgs --doc-type=smlouva --year=2020 --output-path=/var/ftp/pub
+50 10 * * 7 root python3 /opt/opendata/exports/export.py --company=cenia --doc-type=smlouva --year=2020 --output-path=/var/ftp/pub
+55 11 * * 7 root python3 /opt/opendata/exports/export.py --company=cizp --doc-type=smlouva --year=2020 --output-path=/var/ftp/pub
