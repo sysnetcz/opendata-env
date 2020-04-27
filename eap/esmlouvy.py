@@ -74,7 +74,7 @@ class Smlouva(Document):
     contractoraddresscity = Keyword()
     contractoraddressstreet = Keyword()
     contractoraddresszip = Keyword()
-    contractorcompany = Keyword
+    contractorcompany = Keyword()
     contractorid = Keyword()
     contracttitle = Text(fields={'raw': Keyword()})
     contracttype = Keyword()
