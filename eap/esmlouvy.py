@@ -30,7 +30,7 @@ INDEX_MZP_SMLOUVA = "muzo-mzp-smlouva"
 
 def import_esmlouvy(url=URL_JSON, host=ES_HOST, index=INDEX_MZP_SMLOUVA):
     try:
-        index += '-' + elasticsearch_dsl.date.today().isoformat().replace('-', '.')
+        # index += '-' + elasticsearch_dsl.date.today().isoformat().replace('-', '.')
         r = requests.get(url)
         json = r.json()
         count = json["total"]
@@ -47,8 +47,8 @@ def import_esmlouvy(url=URL_JSON, host=ES_HOST, index=INDEX_MZP_SMLOUVA):
             for sml in data:
                 sml_es = Smlouva()
                 sml_es.load_data(sml)
-                # doc_id = sml_es.id
-                # sml_es.meta.id = doc_id
+                doc_id = sml_es.id
+                sml_es.meta.id = doc_id
                 sml_es.save(using=client, index=index)
                 dot += 1
                 n += 1
@@ -141,7 +141,8 @@ class Smlouva(Document):
         self.total = str(self.valuewithvat)
         self.originator = "Ministerstvo životního prostředí"
         self.originatorico = "00164801"
-        self.id = self.contractid + "_" + dc_iso
+        self.id = self.contractid
+        # self.id = self.contractid + "_" + dc_iso
 
 
 def isfloat(value):
