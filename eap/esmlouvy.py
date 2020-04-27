@@ -108,10 +108,12 @@ class Smlouva(Document):
         self.rok = -1
         dc_iso = consolidate_date(data['DateConclusion'])
         if dc_iso is not None:
-            self.dateconclusion = datetime.datetime.fromisoformat(dc_iso)
+            dca = dc_iso.split('-')
+            self.dateconclusion = datetime.date(int(dca[0]), int(dca[1]), int(dca[2]))
         dv_iso = consolidate_date(data['DateValidity'])
         if dv_iso is not None:
-            self.datevalidity = datetime.datetime.fromisoformat(dv_iso)
+            dva = dv_iso.split('-')
+            self.datevalidity = datetime.date(int(dva[0]), int(dva[1]), int(dva[2]))
         self.contractid = data['ContractID']
         self.title = data['Title']
         self.contractorid = data['ContractorID']
