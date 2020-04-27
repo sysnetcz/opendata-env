@@ -106,10 +106,12 @@ class Smlouva(Document):
 
     def load_data(self, data):
         self.rok = -1
+        self.dateconclusion = None
         dc_iso = consolidate_date(data['DateConclusion'])
         if dc_iso is not None:
             dca = dc_iso.split('-')
             self.dateconclusion = datetime.date(int(dca[0]), int(dca[1]), int(dca[2]))
+        self.datevalidity = None
         dv_iso = consolidate_date(data['DateValidity'])
         if dv_iso is not None:
             dva = dv_iso.split('-')
@@ -128,7 +130,7 @@ class Smlouva(Document):
                 t = t1[0]
             else:
                 t = '-1'
-        self.valuewithvat = t
+        self.valuewithvat = float(t)
         if self.dateconclusion is not None:
             self.rok = int(dc_iso.split('-')[0])
         self.contracttitle = self.title
