@@ -289,6 +289,9 @@ class Exporter:
                         }
                     )
                 elif self.doctype == DATASOURCE_DOCTYPE_SMLOUVA:
+                    dv = 'nestanoveno'
+                    if 'datevalidity' in hit:
+                        dv = consolidate_date(hit.datevalidity)
                     self.writer.writerow(
                         {
                             'cislo_smlouvy': hit.contractid,
@@ -296,7 +299,7 @@ class Exporter:
                             'dodavatel': remove_newlines(hit.contractorcompany),
                             'ico': hit.contractorid,
                             'datum_uzavreni': consolidate_date(hit.dateconclusion),
-                            'datum_trvani': consolidate_date(hit.datevalidity),
+                            'datum_trvani': dv,
                             'celkova_castka': format_float(hit.valuewithvat),
                             'mena': 'CZK'
                         }
