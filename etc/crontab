@@ -29,7 +29,7 @@ MAILTO=root
  5 7 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cizp-objednavka.conf -l /var/log/logstash/opendata/cizp/objednavka
 15 7 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cizp-smlouva.conf -l /var/log/logstash/opendata/cizp/smlouva
 25 7 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cizp-zavazek.conf -l /var/log/logstash/opendata/cizp/zavazek
-35 7 * * 7 python3 /opt/opendata/eap/esmlouvy.py --es-host=localhost:9200 --index=muzo-mzp-smlouva
+35 7 * * 7 root python3 /opt/opendata/eap/esmlouvy.py --es-host=localhost:9200 --index=muzo-mzp-smlouva
 
 
 # OpenData export
