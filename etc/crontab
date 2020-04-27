@@ -29,47 +29,51 @@ MAILTO=root
  5 7 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cizp-objednavka.conf -l /var/log/logstash/opendata/cizp/objednavka
 15 7 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cizp-smlouva.conf -l /var/log/logstash/opendata/cizp/smlouva
 25 7 * * 7 root /opt/logstash/bin/logstash -f /etc/logstash/opendata/muzo-in-cizp-zavazek.conf -l /var/log/logstash/opendata/cizp/zavazek
+35 7 * * 7 python3 /opt/opendata/eap/esmlouvy.py --es-host=localhost:9200 --index=muzo-mzp-smlouva
+
 
 # OpenData export
- 5  8 * * 7 root python3 /opt/opendata/exports/export.py --company=aopk --doc-type=faktura --output-path=/var/ftp/pub
-10  8 * * 7 root python3 /opt/opendata/exports/export.py --company=aopk --doc-type=objednavka --output-path=/var/ftp/pub
-15  8 * * 7 root python3 /opt/opendata/exports/export.py --company=aopk --doc-type=smlouva --output-path=/var/ftp/pub
-20  8 * * 7 root python3 /opt/opendata/exports/export.py --company=mzp --doc-type=faktura --output-path=/var/ftp/pub
-25  8 * * 7 root python3 /opt/opendata/exports/export.py --company=mzp --doc-type=objednavka --output-path=/var/ftp/pub
-30  8 * * 7 root python3 /opt/opendata/exports/export.py --company=sjcr --doc-type=faktura --output-path=/var/ftp/pub
-35  8 * * 7 root python3 /opt/opendata/exports/export.py --company=sjcr --doc-type=smlouva --output-path=/var/ftp/pub
-40  8 * * 7 root python3 /opt/opendata/exports/export.py --company=cgs --doc-type=faktura --output-path=/var/ftp/pub
-45  8 * * 7 root python3 /opt/opendata/exports/export.py --company=cgs --doc-type=objednavka --output-path=/var/ftp/pub
-50  8 * * 7 root python3 /opt/opendata/exports/export.py --company=cgs --doc-type=smlouva --output-path=/var/ftp/pub
-55  8 * * 7 root python3 /opt/opendata/exports/export.py --company=cenia --doc-type=faktura --output-path=/var/ftp/pub
- 0  9 * * 7 root python3 /opt/opendata/exports/export.py --company=cenia --doc-type=smlouva --output-path=/var/ftp/pub
- 5  9 * * 7 root python3 /opt/opendata/exports/export.py --company=cizp --doc-type=faktura --output-path=/var/ftp/pub
-10  9 * * 7 root python3 /opt/opendata/exports/export.py --company=cizp --doc-type=objednavka --output-path=/var/ftp/pub
-15  9 * * 7 root python3 /opt/opendata/exports/export.py --company=cizp --doc-type=smlouva --output-path=/var/ftp/pub
+ 5  8 * * 7 root python3 /opt/opendata/eap/export.py --company=aopk --doc-type=faktura --output-path=/var/ftp/pub
+10  8 * * 7 root python3 /opt/opendata/eap/export.py --company=aopk --doc-type=objednavka --output-path=/var/ftp/pub
+15  8 * * 7 root python3 /opt/opendata/eap/export.py --company=aopk --doc-type=smlouva --output-path=/var/ftp/pub
+20  8 * * 7 root python3 /opt/opendata/eap/export.py --company=mzp --doc-type=faktura --output-path=/var/ftp/pub
+25  8 * * 7 root python3 /opt/opendata/eap/export.py --company=mzp --doc-type=objednavka --output-path=/var/ftp/pub
+30  8 * * 7 root python3 /opt/opendata/eap/export.py --company=sjcr --doc-type=faktura --output-path=/var/ftp/pub
+35  8 * * 7 root python3 /opt/opendata/eap/export.py --company=sjcr --doc-type=smlouva --output-path=/var/ftp/pub
+40  8 * * 7 root python3 /opt/opendata/eap/export.py --company=cgs --doc-type=faktura --output-path=/var/ftp/pub
+45  8 * * 7 root python3 /opt/opendata/eap/export.py --company=cgs --doc-type=objednavka --output-path=/var/ftp/pub
+50  8 * * 7 root python3 /opt/opendata/eap/export.py --company=cgs --doc-type=smlouva --output-path=/var/ftp/pub
+55  8 * * 7 root python3 /opt/opendata/eap/export.py --company=cenia --doc-type=faktura --output-path=/var/ftp/pub
+ 0  9 * * 7 root python3 /opt/opendata/eap/export.py --company=cenia --doc-type=smlouva --output-path=/var/ftp/pub
+ 5  9 * * 7 root python3 /opt/opendata/eap/export.py --company=cizp --doc-type=faktura --output-path=/var/ftp/pub
+10  9 * * 7 root python3 /opt/opendata/eap/export.py --company=cizp --doc-type=objednavka --output-path=/var/ftp/pub
+15  9 * * 7 root python3 /opt/opendata/eap/export.py --company=cizp --doc-type=smlouva --output-path=/var/ftp/pub
+20  9 * * 7 root python3 /opt/opendata/eap/export.py --company=mzp --doc-type=smlouva --output-path=/var/ftp/pub
+
 
 # OpenData export 2019
- 5 10 * * 7 root python3 /opt/opendata/exports/export.py --company=aopk --doc-type=faktura --year=2019 --output-path=/var/ftp/pub
-10 10 * * 7 root python3 /opt/opendata/exports/export.py --company=mzp --doc-type=faktura --year=2019 --output-path=/var/ftp/pub
-15 10 * * 7 root python3 /opt/opendata/exports/export.py --company=sjcr --doc-type=faktura --year=2019 --output-path=/var/ftp/pub
-20 10 * * 7 root python3 /opt/opendata/exports/export.py --company=cgs --doc-type=faktura --year=2019 --output-path=/var/ftp/pub
-25 10 * * 7 root python3 /opt/opendata/exports/export.py --company=cenia --doc-type=faktura --year=2019 --output-path=/var/ftp/pub
-30 10 * * 7 root python3 /opt/opendata/exports/export.py --company=cizp --doc-type=faktura --year=2019 --output-path=/var/ftp/pub
-35 10 * * 7 root python3 /opt/opendata/exports/export.py --company=aopk --doc-type=smlouva --year=2019 --output-path=/var/ftp/pub
-40 10 * * 7 root python3 /opt/opendata/exports/export.py --company=sjcr --doc-type=smlouva --year=2019 --output-path=/var/ftp/pub
-45 10 * * 7 root python3 /opt/opendata/exports/export.py --company=cgs --doc-type=smlouva --year=2019 --output-path=/var/ftp/pub
-50 10 * * 7 root python3 /opt/opendata/exports/export.py --company=cenia --doc-type=smlouva --year=2019 --output-path=/var/ftp/pub
-55 11 * * 7 root python3 /opt/opendata/exports/export.py --company=cizp --doc-type=smlouva --year=2019 --output-path=/var/ftp/pub
+ 5 10 * * 7 root python3 /opt/opendata/eap/export.py --company=aopk --doc-type=faktura --year=2019 --output-path=/var/ftp/pub
+10 10 * * 7 root python3 /opt/opendata/eap/export.py --company=mzp --doc-type=faktura --year=2019 --output-path=/var/ftp/pub
+15 10 * * 7 root python3 /opt/opendata/eap/export.py --company=sjcr --doc-type=faktura --year=2019 --output-path=/var/ftp/pub
+20 10 * * 7 root python3 /opt/opendata/eap/export.py --company=cgs --doc-type=faktura --year=2019 --output-path=/var/ftp/pub
+25 10 * * 7 root python3 /opt/opendata/eap/export.py --company=cenia --doc-type=faktura --year=2019 --output-path=/var/ftp/pub
+30 10 * * 7 root python3 /opt/opendata/eap/export.py --company=cizp --doc-type=faktura --year=2019 --output-path=/var/ftp/pub
+35 10 * * 7 root python3 /opt/opendata/eap/export.py --company=aopk --doc-type=smlouva --year=2019 --output-path=/var/ftp/pub
+40 10 * * 7 root python3 /opt/opendata/eap/export.py --company=sjcr --doc-type=smlouva --year=2019 --output-path=/var/ftp/pub
+45 10 * * 7 root python3 /opt/opendata/eap/export.py --company=cgs --doc-type=smlouva --year=2019 --output-path=/var/ftp/pub
+50 10 * * 7 root python3 /opt/opendata/eap/export.py --company=cenia --doc-type=smlouva --year=2019 --output-path=/var/ftp/pub
+55 11 * * 7 root python3 /opt/opendata/eap/export.py --company=cizp --doc-type=smlouva --year=2019 --output-path=/var/ftp/pub
 
 
 # OpenData export 2020
- 5 11 * * 7 root python3 /opt/opendata/exports/export.py --company=aopk --doc-type=faktura --year=2020 --output-path=/var/ftp/pub
-10 11 * * 7 root python3 /opt/opendata/exports/export.py --company=mzp --doc-type=faktura --year=2020 --output-path=/var/ftp/pub
-15 11 * * 7 root python3 /opt/opendata/exports/export.py --company=sjcr --doc-type=faktura --year=2020 --output-path=/var/ftp/pub
-20 11 * * 7 root python3 /opt/opendata/exports/export.py --company=cgs --doc-type=faktura --year=2020 --output-path=/var/ftp/pub
-25 11 * * 7 root python3 /opt/opendata/exports/export.py --company=cenia --doc-type=faktura --year=2020 --output-path=/var/ftp/pub
-30 11 * * 7 root python3 /opt/opendata/exports/export.py --company=cizp --doc-type=faktura --year=2020 --output-path=/var/ftp/pub
-35 10 * * 7 root python3 /opt/opendata/exports/export.py --company=aopk --doc-type=smlouva --year=2020 --output-path=/var/ftp/pub
-40 10 * * 7 root python3 /opt/opendata/exports/export.py --company=sjcr --doc-type=smlouva --year=2020 --output-path=/var/ftp/pub
-45 10 * * 7 root python3 /opt/opendata/exports/export.py --company=cgs --doc-type=smlouva --year=2020 --output-path=/var/ftp/pub
-50 10 * * 7 root python3 /opt/opendata/exports/export.py --company=cenia --doc-type=smlouva --year=2020 --output-path=/var/ftp/pub
-55 11 * * 7 root python3 /opt/opendata/exports/export.py --company=cizp --doc-type=smlouva --year=2020 --output-path=/var/ftp/pub
+ 5 11 * * 7 root python3 /opt/opendata/eap/export.py --company=aopk --doc-type=faktura --year=2020 --output-path=/var/ftp/pub
+10 11 * * 7 root python3 /opt/opendata/eap/export.py --company=mzp --doc-type=faktura --year=2020 --output-path=/var/ftp/pub
+15 11 * * 7 root python3 /opt/opendata/eap/export.py --company=sjcr --doc-type=faktura --year=2020 --output-path=/var/ftp/pub
+20 11 * * 7 root python3 /opt/opendata/eap/export.py --company=cgs --doc-type=faktura --year=2020 --output-path=/var/ftp/pub
+25 11 * * 7 root python3 /opt/opendata/eap/export.py --company=cenia --doc-type=faktura --year=2020 --output-path=/var/ftp/pub
+30 11 * * 7 root python3 /opt/opendata/eap/export.py --company=cizp --doc-type=faktura --year=2020 --output-path=/var/ftp/pub
+35 10 * * 7 root python3 /opt/opendata/eap/export.py --company=aopk --doc-type=smlouva --year=2020 --output-path=/var/ftp/pub
+40 10 * * 7 root python3 /opt/opendata/eap/export.py --company=sjcr --doc-type=smlouva --year=2020 --output-path=/var/ftp/pub
+45 10 * * 7 root python3 /opt/opendata/eap/export.py --company=cgs --doc-type=smlouva --year=2020 --output-path=/var/ftp/pub
+50 10 * * 7 root python3 /opt/opendata/eap/export.py --company=cenia --doc-type=smlouva --year=2020 --output-path=/var/ftp/pub
+55 11 * * 7 root python3 /opt/opendata/eap/export.py --company=cizp --doc-type=smlouva --year=2020 --output-path=/var/ftp/pub
