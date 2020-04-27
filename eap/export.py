@@ -289,7 +289,7 @@ class Exporter:
                         }
                     )
                 elif self.doctype == DATASOURCE_DOCTYPE_SMLOUVA:
-                    dv = 'nestanoveno'
+                    dv = ''
                     if 'datevalidity' in hit:
                         dv = consolidate_date(hit.datevalidity)
                     self.writer.writerow(
