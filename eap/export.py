@@ -34,7 +34,7 @@ def consolidate_date(date_str):
                 d = d.replace(year=2199)
             out = d.astimezone().date().isoformat()
 
-    except OSError as err:
+    except (OSError, ValueError) as err:
         print('consolidate_date', 'ERROR', date_str, type(err), err)
         out = 'DATE ERROR: ' + date_str
     return out
