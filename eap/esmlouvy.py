@@ -15,7 +15,7 @@ import sys
 
 import elasticsearch_dsl
 import requests
-from datetime import datetime
+import datetime
 from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Document, Keyword, Text, Date, Integer, Float
 from elasticsearch_dsl.exceptions import ElasticsearchDslException
@@ -108,10 +108,10 @@ class Smlouva(Document):
         self.rok = -1
         dc_iso = consolidate_date(data['DateConclusion'])
         if dc_iso is not None:
-            self.dateconclusion = datetime.fromisoformat(dc_iso)
+            self.dateconclusion = datetime.datetime.fromisoformat(dc_iso)
         dv_iso = consolidate_date(data['DateValidity'])
         if dv_iso is not None:
-            self.datevalidity = datetime.fromisoformat(dv_iso)
+            self.datevalidity = datetime.datetime.fromisoformat(dv_iso)
         self.contractid = data['ContractID']
         self.title = data['Title']
         self.contractorid = data['ContractorID']
